@@ -1,0 +1,32 @@
+FROM ubuntu:bionic
+
+ENV SWIFT_DOWNLOAD_URL="https://swift.org/builds/swift-5.3.2-release/ubuntu1804"
+ENV SWIFT_RELEASE="swift-5.3.2-RELEASE"
+ENV OS="ubuntu18.04"
+
+ARG DEBCONF_NONINTERACTIVE_SEEN=true
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get -q update
+
+RUN apt-get -q install -y \
+    binutils \
+    curl \
+    git \
+    libc6-dev \
+    libcurl4 \
+    libedit2 \
+    libgcc-5-dev \
+    libpython2.7 \
+    libsqlite3-0 \
+    libstdc++-5-dev \
+    libxml2 \
+    pkg-config \
+    tzdata \
+    zlib1g-dev
+
+RUN curl -O -# ${SWIFT_DOWNLOAD_URL}/${SWIFT_RELEASE}/${SWIFT_RELEASE}-${OS}.tar.gz
+
+RUN tar xvf ${SWIFT_RELEASE}-${OS}.tar.gz
+
+RUN cp -rv ./${SWIFT_RELEASE}-ubuntu18.04/. /
