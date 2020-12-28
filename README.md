@@ -1,10 +1,18 @@
 # swift-multiarch
 
-<center>
-<img src="img/swift.png" height="128" />
-<img src="img/docker.png" height="128" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="img/arm.png" height="128" />
-</center>
+  <table style="border-collapse: collapse; border: none;">
+    <tr>
+      <td>
+        <img src="img/swift.png" height="128" />
+      </td>
+      <td>
+        <img src="img/docker.png" height="128" />
+      </td>
+      <td>
+        <img src="img/arm.png" height="128" />
+      </td>
+    </tr>
+  </table>
 
 <br/><br/>
 Multi-platform architecture toolchains for Apple's Swift Language
