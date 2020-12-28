@@ -1,9 +1,11 @@
 # Valid values are x86_64, aarch64, armv8 etc.
 ARCH?=x86_64
-OS=unknown-linux-gnu
+
+OS=ubuntu-18.04
 
 IMAGE_NAME=swift-multiarch:$(ARCH)-$(OS)
 
+REMOTE_PREFIX=jng27
 
 run:
 	docker run \
@@ -14,6 +16,10 @@ create:
 		--platform $(ARCH) \
 		-t $(IMAGE_NAME) \
 		-f Dockerfile.$(ARCH) .
+
+push:
+	docker tag $(IMAGE_NAME) $(REMOTE_PREFIX)/$(IMAGE_NAME)
+	docker push $(REMOTE_PREFIX)/$(IMAGE_NAME)
 
 build:
 	docker run \
