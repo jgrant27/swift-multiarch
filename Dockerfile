@@ -1,7 +1,6 @@
 ARG OS
-ARG ARCH
 
-FROM ${OS}
+FROM $OS
 
 ENV SWIFT_GIT_URL="https://github.com/apple/swift.git"
 ENV SWIFT_RELEASE_VERSION="release/5.3"
@@ -50,6 +49,10 @@ RUN ./swift/utils/update-checkout --clone
 RUN ./swift/utils/build-script --release
 
 RUN ./swift/utils/build-script --release --install-all
+
+ARG ARCH
+
+RUN echo $ARCH
 
 RUN rsync -av /root/source/build/Ninja-ReleaseAssert/toolchain-linux-$ARCH/. /
 

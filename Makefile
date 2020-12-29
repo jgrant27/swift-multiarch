@@ -1,5 +1,5 @@
-# Valid values are amd64, arm64, armv7, armv8 etc.
-ARCH?=amd64
+# Valid values are x86_64, aarch64, armv7, armv8 etc.
+ARCH?=x86_64
 
 OS_NAME=ubuntu
 OS_VERSION=18.04
@@ -15,8 +15,9 @@ run:
 
 build:
 	docker build \
+		--progress=plain \
 		--build-arg OS="$(OS_NAME):$(OS_VERSION)" \
-		--build-arg ARCH=$(ARCH) \
+		--build-arg ARCH="$(ARCH)" \
 		--platform $(ARCH) \
 		-t $(IMAGE_NAME) \
 		-f Dockerfile .
