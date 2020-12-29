@@ -14,6 +14,7 @@ run:
 
 build:
 	OS=$(OS) docker build \
+				-e ARCH=$(ARCH) \
 				--platform $(ARCH) \
 				-t $(IMAGE_NAME) \
 				-f Dockerfile .

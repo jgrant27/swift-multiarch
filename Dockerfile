@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-
+ENV ARCH="amd64"
 ENV SWIFT_GIT_URL="https://github.com/apple/swift.git"
 ENV SWIFT_RELEASE_VERSION="release/5.3"
 ENV SOURCE_DIR="/root/source"
@@ -50,7 +50,7 @@ RUN ./swift/utils/build-script --release
 
 RUN ./swift/utils/build-script --release --install-all
 
-RUN rsync -av /root/source/build/Ninja-ReleaseAssert/toolchain-linux-x86_64/. /
+RUN rsync -av /root/source/build/Ninja-ReleaseAssert/toolchain-linux-$ARCH/. /
 
 WORKDIR /
 
