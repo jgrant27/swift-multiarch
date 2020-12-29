@@ -1,21 +1,22 @@
 # swift-multiarch
 
-  <table style="border-collapse: collapse; border: none;">
+Multi-platform architecture toolchains for [Apple's Swift Language](https://swift.org/) using [Docker](https://www.docker.com/).
+
+<center>
+<table style="border-collapse: collapse; border: none;">
     <tr>
       <td>
-        <img src="img/swift.png" height="128" />
+        <img src="img/swift.png" />
       </td>
       <td>
         <img src="img/docker.png" height="128" />
       </td>
       <td>
-        <img src="img/arm.png" height="128" />
+        <img src="img/arm.png" height="100" />
       </td>
     </tr>
-  </table>
-
-<br/><br/>
-Multi-platform architecture toolchains for Apple's Swift Language
+</table>
+</center>
 
 ## Why ?
 Although official Docker images exist for Swift they are limited to x86_64 platforms.

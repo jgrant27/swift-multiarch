@@ -22,6 +22,7 @@ RUN apt-get -q install -y \
     libstdc++-5-dev \
     libxml2 \
     pkg-config \
+    rsync \
     tzdata \
     zlib1g-dev
 
@@ -29,4 +30,8 @@ RUN curl -O -# ${SWIFT_DOWNLOAD_URL}/${SWIFT_RELEASE}/${SWIFT_RELEASE}-${OS}.tar
 
 RUN tar xvf ${SWIFT_RELEASE}-${OS}.tar.gz
 
-RUN cp -rv ./${SWIFT_RELEASE}-ubuntu18.04/. /
+RUN rsync -av ./${SWIFT_RELEASE}-ubuntu18.04/. /
+
+RUN rm -fr ./${SWIFT_RELEASE}-ubuntu18.04
+
+RUN rm ${SWIFT_RELEASE}-${OS}.tar.gz

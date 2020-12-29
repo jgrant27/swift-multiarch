@@ -23,6 +23,7 @@ push:
 
 build:
 	docker run \
+		--platform $(ARCH) \
 		--name $(IMAGE_NAME) \
 		-it $(IMAGE_NAME) \
 		swift build --triple $(ARCH)-$(OS) \
