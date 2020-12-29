@@ -1,12 +1,13 @@
-FROM ubuntu:18.04
+ARG OS
+ARG ARCH
 
-ENV ARCH="amd64"
+FROM ${OS}
+
 ENV SWIFT_GIT_URL="https://github.com/apple/swift.git"
 ENV SWIFT_RELEASE_VERSION="release/5.3"
 ENV SOURCE_DIR="/root/source"
-
-ARG DEBCONF_NONINTERACTIVE_SEEN=true
-ARG DEBIAN_FRONTEND=noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN=true
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get -q update
 

@@ -1,7 +1,9 @@
 # Valid values are amd64, arm64, armv7, armv8 etc.
 ARCH?=amd64
 
-OS=ubuntu-18.04
+OS_NAME=ubuntu
+OS_VERSION=18.04
+OS=$(OS_NAME)-$(OS_VERSION)
 
 IMAGE_NAME=swift-multiarch:$(ARCH)-$(OS)
 CONTAINER_NAME=swift-multiarch-$(ARCH)-$(OS)
@@ -9,15 +11,15 @@ CONTAINER_NAME=swift-multiarch-$(ARCH)-$(OS)
 REMOTE_PREFIX=jng27
 
 run:
-	docker run \
-		-it $(IMAGE_NAME) bash
+	docker run -it $(IMAGE_NAME) bash
 
 build:
-	OS=$(OS) docker build \
-				-e ARCH=$(ARCH) \
-				--platform $(ARCH) \
-				-t $(IMAGE_NAME) \
-				-f Dockerfile .
+	docker build \
+		--build-arg OS="$(OS_NAME):$(OS_VERSION)" \
+		--build-arg ARCH=$(ARCH) \
+		--platform $(ARCH) \
+		-t $(IMAGE_NAME) \
+		-f Dockerfile .
 
 squash: build
 	mkdir .tmp || true
