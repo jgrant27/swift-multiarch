@@ -27,7 +27,7 @@ squash: build
 	docker rm $(CONTAINER_NAME) || true
 	docker create --name $(CONTAINER_NAME) $(IMAGE_NAME)
 	docker export $(CONTAINER_NAME) | pigz > .tmp/$(CONTAINER_NAME).tgz
-	zcat .tmp/$(CONTAINER_NAME).tgz | docker import - $(IMAGE_NAME)
+	gunzip -c .tmp/$(CONTAINER_NAME).tgz | docker import - $(IMAGE_NAME)
 	rm -fr .tmp || true
 
 push: squash
