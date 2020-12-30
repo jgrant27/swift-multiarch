@@ -26,6 +26,7 @@ RUN apt-get install -y    \
     pkg-config            \
     python                \
     python-six            \
+    python3-sphinx        \
     rsync                 \
     swig                  \
     systemtap-sdt-dev     \
@@ -35,6 +36,8 @@ RUN apt-get install -y    \
 RUN mkdir -p $SOURCE_DIR
 
 WORKDIR $SOURCE_DIR
+
+RUN git config --global pack.threads "0"
 
 RUN git clone $SWIFT_GIT_URL
 
@@ -46,18 +49,16 @@ WORKDIR $SOURCE_DIR
 
 RUN ./swift/utils/update-checkout --clone
 
-RUN ./swift/utils/build-script --release
+RUN ./swift/utils/build-toolchain --release
 
-RUN ./swift/utils/build-script --release --install-all
+RUN ./swift/utils/build-toolchain --release --test
 
 ARG ARCH
 
-RUN echo $ARCH
-
-RUN rsync -av /root/source/build/Ninja-ReleaseAssert/toolchain-linux-$ARCH/. /
-
 WORKDIR /
+
+RUN tar xvf /root/source/swift*tar.gz
 
 RUN rm -fr /root/source
 
-RUN swift --version
+RUN swift build --version
