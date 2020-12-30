@@ -51,7 +51,7 @@ RUN ./swift/utils/update-checkout --clone
 
 RUN ./swift/utils/build-toolchain --release
 
-RUN ./swift/utils/build-toolchain --release --test
+#RUN ./swift/utils/build-toolchain --release --test
 
 ARG ARCH
 
